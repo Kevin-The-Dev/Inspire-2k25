@@ -1,3 +1,36 @@
+.loading-container {
+            height: 600vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 50vh;
+        }
+
+        .circular-loader {
+            position: relative;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid #ff7849;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Main website styles below */
+
+        /* Existing styles from main styles.css */
 /* Navigation Bar */
 .navbar {
   position: sticky;
@@ -26,6 +59,7 @@
   justify-content: center; /* Center items horizontally inside navbar_menu */
   max-width: 1200px; /* Limit navbar width */
   width: 100%; /* Take full width within max-width */
+  
 }
 
 @media (min-width: 769px) {
@@ -333,8 +367,8 @@ body {
 .cta-button {
   background-color: #ff7849; /* Vibrant orange */
   color: #f9fafb; /* Light gray text */
-  /* padding: 15px 30px; */
-  /* font-size: 1.5rem; */
+  padding: 15px 30px;
+  font-size: 1.3rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: 0.3s linear;
@@ -390,7 +424,7 @@ body {
   .cta-button {
     width: max-content;
     height: max-content;
-    
+    font-size: 1.1rem;
     
 
   }
@@ -424,14 +458,40 @@ body {
 
 /* Events Section */
 .events {
-  min-height: 90vh; /* Slightly reduced height */
+  position: relative;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px; /* Increased padding */
+  padding: 60px 20px;
   box-sizing: border-box;
-  background-color: #1e293b; /* Dark navy background */
+  background-color: #000;
+  background-image: radial-gradient(circle at top right, rgba(121, 68, 154, 0.13), transparent),
+    radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent);
+  overflow: hidden;
+}
+
+.events canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Ensure it's not behind other elements */
+  opacity: 1; /* Make sure it's fully visible */
+  pointer-events: none; /* Prevent interference */
+}
+
+
+.events::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place the pseudo-element behind the content */
 }
 
 .events h2 {
@@ -544,6 +604,7 @@ body {
 
 /* Schedule Section */
 .schedule-section {
+  position: relative;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -552,7 +613,20 @@ body {
   padding: 60px 20px;
   box-sizing: border-box;
   background-color: #111827; /* Darker navy schedule background */
+  overflow: hidden;
 }
+
+#schedule-animation{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 1;
+  pointer-events: none;
+}
+
 
 .schedule-section h2 {
   font-size: 3em;
@@ -752,6 +826,8 @@ body {
   text-align: center;
   box-sizing: border-box;
   background-color: #111827; /* Darker navy sponsor section */
+  overflow: hidden;
+  position: relative;
 }
 
 .sponsors h2 {
@@ -772,6 +848,7 @@ body {
   justify-items: center;
   max-width: 1200px;
   margin: 0 auto;
+  opacity: 1;
 }
 
 .sponsors-grid img {
@@ -779,11 +856,13 @@ body {
   height: auto;
   border-radius: 8px; /* Rounded sponsor logos */
   transition: 0.2s linear;
+  opacity: 1;
   
 }
 
 .sponsors-grid img:hover {
   transform: scale(1.1); /* Scale up on hover */
+  opacity: 1;
   
 }
 
@@ -1098,4 +1177,29 @@ body {
     .hero-content * {
       text-align: center;
     }
+}
+
+.events {
+  position: relative;
+  overflow: hidden;
+}
+
+.events::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #1e293b;
+  z-index: -1;
+}
+
+
+
+canvas {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
