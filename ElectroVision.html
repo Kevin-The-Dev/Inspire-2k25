@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electro Vision</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XJS086QB3V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XJS086QB3V');
+</script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+
+      color: #f9fafb;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      background-color: #000;
+      background-image: radial-gradient(circle at top right, rgba(121, 68, 154, 0.13), transparent),
+        radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent);
+
+      /* Prevent scrollbars for animation */
+    }
+
+    body canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      /* Ensure it's not behind other elements */
+      opacity: 1;
+      /* Make sure it's fully visible */
+      pointer-events: none;
+      /* Prevent interference */
+    }
+
+
+    /* Navigation Bar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(17, 24, 39, 0.85);
+      /* Darker transparent navbar */
+      backdrop-filter: blur(12px);
+      /* Stronger blur */
+      z-index: 1000;
+      box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+      /* More prominent shadow */
+      box-sizing: border-box;
+      border-bottom: none;
+      /* Removed border */
+      padding: 0 20px;
+      display: flex;
+      /* Add flex container to navbar */
+      justify-content: center;
+      /* Center navbar horizontally */
+    }
+
+    .navbar_menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      height: 65px;
+      /* Slightly shorter navbar */
+      box-sizing: border-box;
+      justify-content: center;
+      /* Center items horizontally inside navbar_menu */
+      max-width: 1200px;
+      /* Limit navbar width */
+      width: 100%;
+      /* Take full width within max-width */
+    }
+
+    @media (min-width: 769px) {
+      .navbar_menu {
+        justify-content: center;
+        /* Center align navbar items on larger screens */
+      }
+
+      .navbar {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar_menu {
+        flex-direction: row;
+        justify-content: flex-start;
+        /* Keep items to the start on smaller screens if needed */
+        align-items: center;
+        height: auto;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px;
+        margin-left: 0;
+        /* Reset margin */
+      }
+
+    }
+
+
+    .navbar_item {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin: 0 12px;
+      /* Adjusted margin */
+      flex-shrink: 0;
+    }
+
+    .navbar_link {
+      color: #d1d5db;
+      /* Light gray navbar links */
+      text-decoration: none;
+      padding: 8px 0;
+      /* Reduced padding */
+      border-radius: 4px;
+      /* Slightly rounded nav links */
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      font-family: "Fira Code", monospace;
+      /* Monospace font for nav links */
+      font-weight: 500;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .navbar_link i {
+      margin-right: 8px;
+      /* Adjusted icon margin */
+      transition: transform 0.8s ease-in-out;
+      /* Faster icon rotation */
+      color: #ff7849;
+      /* Orange icon color */
+      font-size: 1.1em;
+      /* Slightly larger icons */
+    }
+
+    .navbar_link:hover i {
+      transform: rotate(360deg) scale(1.1);
+      /* Scale up icon on hover */
+    }
+
+    .navbar_link span {
+      display: block;
+    }
+
+    .navbar_link::before {
+      content: "";
+      position: absolute;
+      bottom: 2px;
+      /* Closer to text */
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background-color: #ff7849;
+      /* Vibrant orange underline */
+      transition: width 0.3s ease, left 0.3s ease;
+      z-index: 1;
+    }
+
+    .navbar_link:hover {
+      color: #f9fafb;
+      /* Very light gray on hover */
+      transform: translateY(-2px);
+      /* Slight lift on hover */
+    }
+
+    .navbar_link:hover::before {
+      width: 100%;
+      left: 0;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 1200px;
+      /* Added max-width to container */
+      margin: 20px auto;
+      /* Center container on larger screens */
+      background-color: #2d374800;
+      padding: 30px;
+      border-radius: 12px;
+      position: relative;
+      /* Ensure content is above animation */
+    }
+
+    .event-name {
+      font-size: 2.5em;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .event-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      /* Center event details */
+    }
+
+    .event-poster {
+      width: 30%;
+      margin-right: 20px;
+      transition: transform 0.3s ease-in-out;
+      min-width: 200px;
+      /* Added min-width to event-poster */
+    }
+
+    .event-poster:hover {
+      transform: scale(1.05);
+    }
+
+    .event-poster img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      border: 2px solid #ff7849;
+      box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    }
+
+    .event-info {
+      width: 65%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-section {
+      background-color: #000000a9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .info-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .info-section h2,
+    .info-section h3 {
+      color: #ffffff;
+      margin-bottom: 10px;
+
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    .info-section p {
+      line-height: 1.7;
+      margin-bottom: 0;
+      color: #d1d5db;
+      font-size: 1em;
+    }
+
+    a {
+      color: #ff7849;
+      text-decoration: none;
+      transition: color 0.3s ease-in-out;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #f9fafb;
+    }
+
+    /* Back button style specifically for event details pages */
+    .back-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #ff6f10;
+      /* Slate gray color */
+      color: #f9fafb;
+      /* Light text color */
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9em;
+      font-weight: 600;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+      /* Add some margin to the top */
+      transition: 0.3s linear;
+    }
+
+    .back-button:hover {
+      background-color: #f9fafb00;
+      /* Light background on hover */
+      color: #ffffff;
+      /* Slate gray text on hover */
+      border: 1px solid #ffffff;
+      /* Slate gray border on hover */
+      scale: 1.01;
+      text-decoration: none;
+    }
+
+
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+        /* Take full width on mobile */
+        margin-left: auto;
+        margin-right: auto;
+        /* Center container on mobile */
+        padding: 20px;
+      }
+
+      .event-name {
+        font-size: 2em;
+      }
+
+      .event-details {
+        flex-direction: column;
+        align-items: center;
+        /* Center items in flex column */
+      }
+
+      .event-poster {
+        width: 100%;
+        margin-bottom: 20px;
+        margin-right: 0;
+        min-width: auto;
+        /* Reset min-width on mobile */
+        display: flex;
+        /* Enable flexbox for centering */
+        justify-content: center;
+        /* Center horizontally */
+      }
+
+      .event-poster img {
+        max-width: 90%;
+        /* Increased image width limit on mobile */
+        height: auto;
+        /* Maintain aspect ratio */
+        display: block;
+        /* Ensure block display for margin auto to work */
+        margin-left: auto;
+        /* Center horizontally */
+        margin-right: auto;
+        /* Center horizontally */
+      }
+
+      .event-info {
+        width: 100%;
+      }
+
+      .info-section {
+        padding: 15px;
+        /* Reduced padding for info sections on mobile */
+      }
+
+      .info-section h2 {
+        font-size: 1.2em;
+        /* Further reduced h2 font size on mobile */
+      }
+
+      .info-section h3 {
+        font-size: 1em;
+        /* Further reduced h3 font size on mobile */
+      }
+
+      .info-section p {
+        font-size: 0.85em;
+        /* Further reduced p font size on mobile */
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Space+Grotesk:wght@300..700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <canvas></canvas>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <ul class="navbar_menu">
+      <li class="navbar_item">
+        <a href="index.html" class="navbar_link">
+          <i class="fa fa-home" aria-hidden="true"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="navbar_item">
+        <a href="index.html#events" class="navbar_link">
+          <i class="fa fa-tasks" aria-hidden="true"></i>
+          <span>Events</span>
+        </a>
+      </li>
+      <li class="navbar_item">
+        <a href="index.html#schedule" class="navbar_link">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <span>Schedule</span>
+        </a>
+      </li>
+      <li class="navbar_item">
+        <a href="index.html#history" class="navbar_link">
+          <i class="fa fa-history" aria-hidden="true"></i>
+          <span>History</span>
+        </a>
+      </li>
+      <li class="navbar_item">
+        <a href="index.html#sponsors" class="navbar_link">
+          <i class="fa fa-usd" aria-hidden="true"></i>
+          <span>Sponsor</span>
+        </a>
+      </li>
+      <li class="navbar_item">
+        <a href="index.html#footerL" class="navbar_link">
+          <i class="fa fa-info-circle" aria-hidden="true"></i>
+          <span>About</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div id="vanta-fog-bg"></div>
+  <div class="container">
+    <h1 class="event-name" style="color: #ff7849;">Electro Vision</h1>
+    <div class="event-details">
+      <div class="event-poster">
+        <img src="EventPages/Tech/img/c_quize.jpg" alt="C-Quiz Event">
+      </div>
+      <div class="event-info">
+        <section class="info-section">
+            <h2 style="color: #ff7849;">About This Event</h2>
+                <p>            Showcase research ideas and innovations via informative posters.
+                </p>
+            <h3 style="color: #ff7849;">Topics:</h3>
+            <ul>
+                <li>1. Engineering & Technology</li>
+                <li>2. Medicine and Pharmacy</li>
+                <li>3. Pure Sciences</li>
+            </ul>
+        </section>
+    
+        <section class="info-section">
+            <h3 style="color: #ff7849;">Schedule</h3>
+            <p>Date : 07-03-2025 <br>
+              Time: 11:00 AM - 12:30 PM</p>
+        </section>
+    
+        <section class="info-section">
+            <h3 style="color: #ff7849;">Location</h3>
+            <p>D2 - 106</p>
+        </section>
+    
+        <section class="info-section">
+            <h3 style="color: #ff7849;">Rules and Regulations</h3>
+            <ul>
+                <li>Exclusively for Diploma & UG students.</li>
+                <li>Only one poster per team is allowed for presentation.</li>
+                <li>All lettering and diagrams should be large enough to be read from a minimum of 2 feet.</li>
+                <li>The official language for the poster will be English.</li>
+                <li>Poster Size: Maximum 36”x48” (Printed or A2-Hand Made).</li>
+                <li>All participants will receive participation certificates.</li>
+                <li>Marks will be based on theme, creativity, efforts, scientific content, and presentation.</li>
+                <li>The decision of the judges/committee will be final.</li>
+            </ul>
+    
+            <h4 style="color: #ff7849;"><strong>Poster Presentation Guidelines</strong></h4>
+            <p>A Poster presentation for a Technical Event should include the following key elements:</p>
+            <ol>
+                <li><strong>Title:</strong> The title of your poster should be clear and concise, summarizing the topic you will be presenting.</li>
+                <li><strong>Abstract:</strong> An abstract (maximum 300 words, Times New Roman, size 12).</li>
+                <li><strong>Introduction:</strong> A brief introduction explaining the purpose and significance of your research or project.</li>
+                <li><strong>Objectives:</strong> Clearly state the objectives of your work. What problem are you trying to solve? What are the goals of your research?</li>
+                <li><strong>Methods:</strong> Describe the methods you used to conduct your research or complete your project. Include enough detail for the audience to understand how you carried out your work.</li>
+                <li><strong>Results:</strong> Present your findings clearly, using tables, graphs, and other visual aids to convey your results.</li>
+                <li><strong>Discussion:</strong> Discuss the implications of your findings, how they relate to the broader field, and any limitations or weaknesses of your study.</li>
+                <li><strong>Conclusion:</strong> Summarize your key findings and the overall significance of your work.</li>
+                <li><strong>References:</strong> Provide a list of sources used in your research or project.</li>
+            </ol>
+    
+            <p>It's important to make your poster visually appealing and easy to read. Use clear, legible fonts and colors that are easy on the eyes. Include visual aids like charts, graphs, and images to help convey your information. Make sure to proofread your poster carefully.</p>
+    
+            <h4 style="color: #ff7849;">Number of Participants (Only for Group Events)</h4>
+            <ul>
+                <li><strong>Max:</strong> 4</li>
+                <li><strong>Min:</strong> 1</li>
+            </ul>
+        </section>
+    
+        <section class="info-section">
+            <h3 style="color: #ff7849;">Contact</h3>
+            <p><strong>Coordinators:</strong></p>
+    
+            <ul>
+                <li><strong>Vansh Lala:</strong> 9099260210</li>
+                <li><strong>Trupal Patel:</strong> 9537215175</li>
+            </ul>
+        </section>
+    
+        <a href="index.html#events" class="back-button">Back to Events</a>
+    </div>
+    
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      /*** 🌟 STAR ANIMATION FOR EVENTS SECTION WITH TRAILS 🌟 ***/
+      const STAR_COLOR = "#fff";
+      let STAR_SIZE = 3;
+      const STAR_MIN_SCALE = 0.2;
+      const OVERFLOW_THRESHOLD = 50;
+      let STAR_COUNT = (window.innerWidth + window.innerHeight) / 8;
+
+      const canvas = document.querySelector("body canvas");
+      const context = canvas.getContext("2d");
+
+      let scale = window.devicePixelRatio || 1;
+      let width, height;
+
+      let stars = [];
+
+      let pointerX = window.innerWidth / 2;
+      let pointerY = window.innerHeight / 2;
+
+      let velocity = { x: 0, y: 0, tx: 0, ty: 0, z: 0.0005 };
+      let touchInput = false;
+
+      // Function to adjust star size based on screen density
+      function adjustStarSize() {
+        if (window.innerWidth <= 768) {
+          // Adjust STAR_SIZE and STAR_COUNT for smaller screens
+          STAR_SIZE = 2; // Smaller star size for mobile
+          STAR_COUNT = (window.innerWidth + window.innerHeight) / 7; // Reduce star count
+        } else {
+          STAR_SIZE = 3; // Default star size for larger screens
+          STAR_COUNT = (window.innerWidth + window.innerHeight) / 8; // Default star count
+        }
+      }
+
+      generate();
+      resize();
+      step();
+
+      window.addEventListener("resize", () => {
+        adjustStarSize();
+        resize();
+      });
+
+
+
+
+
+
+      window.addEventListener("mousemove", onMouseMove);
+      canvas.addEventListener("touchmove", onTouchMove);
+      canvas.addEventListener("touchend", onMouseLeave);
+      document.addEventListener("mouseleave", onMouseLeave);
+
+      function generate() {
+        stars = []; // Clear existing stars
+        adjustStarSize(); // Adjust star size and count
+        for (let i = 0; i < STAR_COUNT; i++) {
+          stars.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            z: STAR_MIN_SCALE + Math.random() * (1 - STAR_MIN_SCALE),
+          });
+        }
+      }
+
+      function placeStar(star) {
+        star.x = Math.random() * width;
+        star.y = Math.random() * height;
+      }
+
+      function recycleStar(star) {
+        let direction = "z";
+        let vx = Math.abs(velocity.x);
+        let vy = Math.abs(velocity.y);
+
+        if (vx > 1 || vy > 1) {
+          let axis = vx > vy ? (Math.random() < vx / (vx + vy) ? "h" : "v") : (Math.random() < vy / (vx + vy) ? "v" : "h");
+
+          if (axis === "h") {
+            direction = velocity.x > 0 ? "l" : "r";
+          } else {
+            direction = velocity.y > 0 ? "t" : "b";
+          }
+        }
+
+        star.z = STAR_MIN_SCALE + Math.random() * (1 - STAR_MIN_SCALE);
+
+        if (direction === "z") {
+          star.z = 0.1;
+          star.x = Math.random() * width;
+          star.y = Math.random() * height;
+        } else if (direction === "l") {
+          star.x = -OVERFLOW_THRESHOLD;
+          star.y = height * Math.random();
+        } else if (direction === "r") {
+          star.x = width + OVERFLOW_THRESHOLD;
+          star.y = height * Math.random();
+        } else if (direction === "t") {
+          star.x = width * Math.random();
+          star.y = -OVERFLOW_THRESHOLD;
+        } else if (direction === "b") {
+          star.x = width * Math.random();
+          star.y = height + OVERFLOW_THRESHOLD;
+        }
+      }
+
+      function resize() {
+        scale = window.devicePixelRatio || 1;
+        width = window.innerWidth * scale;
+        height = window.innerHeight * scale;
+
+        canvas.width = width;
+        canvas.height = height;
+
+        stars.forEach(placeStar);
+      }
+
+      function step() {
+        context.clearRect(0, 0, width, height);
+        context.fillStyle = "rgba(0, 0, 0, 0.2)";
+        context.fillRect(0, 0, width, height);
+        update();
+        render();
+        requestAnimationFrame(step);
+      }
+
+      function update() {
+        velocity.tx *= 0.96;
+        velocity.ty *= 0.96;
+        velocity.x += (velocity.tx - velocity.x) * 0.3;
+        velocity.y += (velocity.ty - velocity.y) * 0.3;
+
+        stars.forEach((star) => {
+          star.x += velocity.x * star.z * 1.5;
+          star.y += velocity.y * star.z * 1.5;
+          star.x += (star.x - width / 2) * velocity.z * star.z;
+          star.y += (star.y - height / 2) * velocity.z * star.z;
+          star.z += velocity.z;
+          if (star.x < -OVERFLOW_THRESHOLD || star.x > width + OVERFLOW_THRESHOLD || star.y < -OVERFLOW_THRESHOLD || star.y > height + OVERFLOW_THRESHOLD) {
+            recycleStar(star);
+          }
+        });
+      }
+
+      function render() {
+        stars.forEach((star) => {
+          context.beginPath();
+          context.lineCap = "round";
+          context.lineWidth = STAR_SIZE * star.z * scale;
+          context.globalAlpha = 0.5 + 0.5 * Math.random();
+          context.strokeStyle = STAR_COLOR;
+          context.moveTo(star.x, star.y);
+          context.lineTo(star.x - velocity.x * 2, star.y - velocity.y * 2);
+          context.stroke();
+        });
+      }
+
+      function movePointer(x, y) {
+        if (typeof pointerX === "number" && typeof pointerY === "number") {
+          let ox = x - pointerX,
+            oy = y - pointerY;
+
+          velocity.tx += (ox / 100) * (touchInput ? 1 : -1);
+          velocity.ty += (oy / 100) * (touchInput ? 1 : -1);
+        }
+        pointerX = x;
+        pointerY = y;
+      }
+
+      function onMouseMove(event) {
+        touchInput = false;
+        movePointer(event.clientX, event.clientY);
+      }
+
+      function onTouchMove(event) {
+        touchInput = true;
+        movePointer(event.touches[0].clientX, event.touches[0].clientY);
+        event.preventDefault();
+      }
+
+      function onMouseLeave() {
+        pointerX = null;
+        pointerY = null;
+      }
+
+      console.log("Particle animation with trails loaded successfully!");
+    });
+  </script>
+</body>
+
+</html>
