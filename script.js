@@ -471,6 +471,8 @@ function showEvents(department, type) {
   let eventGridId = "";
   if (department === "computer" && type === "tech") {
     eventGridId = "computer-tech-events";
+  }else if (department === "computer" && type === "non-tech") {
+    eventGridId = "computer-non-tech-events";
   } else if (department === "electrical" && type === "tech") {
     eventGridId = "electrical-tech-events";
   } else if (department === "humanity" && type === "non-tech") {
@@ -523,6 +525,7 @@ function hideBackButton() {
 function hideAllEventGrids() {
   document.getElementById("tech-non-tech-events").style.display = "none";
   document.getElementById("computer-tech-events").style.display = "none";
+  document.getElementById("computer-non-tech-events").style.display = "none";
   document.getElementById("electrical-tech-events").style.display = "none";
   document.getElementById("humanity-non-tech-events").style.display = "none";
   document.getElementById("civil-tech-events").style.display = "none";
