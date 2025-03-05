@@ -214,7 +214,7 @@
           </button>
         </div>
         <div class="event-card" data-department="computer" data-event-type="non-tech">
-          <h3>Computer &amp; IT - <br>(On The Spot Fun Events)</h3>
+          <h3>Computer &amp; IT - Non-Tech Events</h3>
           <p>
             Explore Non-tech events by Computer &amp; IT Department.
           </p>
@@ -238,6 +238,14 @@
             Visit <i class="fas fa-arrow-right"></i>
           </button>
         </div>
+        <div class="event-card" data-department="humanity" data-event-type="tech">
+          <h3>On The Spot Fun Event</h3>
+          <p>Explore On the spot fun event by Applied Science and Humanities Department.</p>
+          <button class="visit-button" onclick="showEvents('humanity', 'tech'); event.stopPropagation();">
+            Visit <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+       
         <div class="event-card" data-department="civil" data-event-type="tech">
           <h3>Civil - Tech Events</h3>
           <p>Explore tech events by Civil Department.</p>
@@ -314,14 +322,7 @@
     
       </div>
       
-      <style>
-        /* Hide elements with the 'hidden-on-mobile' class on small screens */
-        @media only screen and (max-width: 600px) {
-          .hidden-on-mobile {
-            display: none !important;
-          }
-        }
-      </style>
+    
       
       
       
@@ -355,6 +356,19 @@
             Showcase research ideas and innovations via informative posters.
           </p>
           <a href="ElectroVision.html" class="register-button">Explore</a>
+        </div>
+      </div>
+
+      <div id="humanity-tech-events" class="events-grid" style="display: none">
+        <button class="back-button" id="backid" onclick="showTechNonTech('humanity')">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+      
+        <!-- Existing event cards -->
+        <div class="event-card">
+          <h3>Seeds to System <br>( Relay Coding )</h3>
+          <p>A two-participant event focused on understanding and continuing code.</p>
+          <a href="SeedstoSystem.html" class="register-button">Explore</a>
         </div>
       </div>
 
@@ -493,41 +507,7 @@
 
 
          <!-- hidden -->
-        <div class="event-card hidden-on-mobile" style="visibility: hidden;">
-          <h3>Bidding Wars <br> ( IPL Auction )</h3>
-          <p>
-            Strategic cricket team bidding competition like the IPL auctions.
-          </p> <a href="BiddingWars.html" class="register-button">Explore</a>
-        </div>
-        <div class="event-card hidden-on-mobile" style="visibility: hidden;">
-          <h3>Bidding Wars <br> ( IPL Auction )</h3>
-          <p>
-            Strategic cricket team bidding competition like the IPL auctions.
-          </p> <a href="BiddingWars.html" class="register-button">Explore</a>
-        </div>
-        
-
-         <!-- Section for "On the spot fun events" -->
-        <div style="border: 2px solid #ff7849; padding: 10px; width: fit-content; margin: 70px auto;">
-          <h2 style="margin-top: 30px; text-align: center; font-size: 2rem; color: #ff7849; font-weight: bold;">On the spot fun events</h2>
-        </div>
-        
-        <!-- hidden -->
-         <div class="event-card hidden-on-mobile" style="visibility: hidden;">
-          <h3>Bidding Wars <br> ( IPL Auction )</h3>
-          <p>
-            Strategic cricket team bidding competition like the IPL auctions.
-          </p> <a href="BiddingWars.html" class="register-button">Explore</a>
-        </div>
-
-         <!-- New event cards under "On the spot fun events" -->
-         <div class="event-card">
-           <h3>Debate</h3>
-           <p>Engage in a stimulating debate with other participants! Participants will debate in pairs, with one speaking for the topic and the other against.</p>
-           <a href="debate.html" class="register-button">Explore</a>
-         </div>
-
-
+       
       </div>
       <style>
         /* Hide elements with the 'hidden-on-mobile' class on small screens */
@@ -636,27 +616,32 @@
         <tbody>
           <tr>
             <td>Seeds to System</td>
-            <td>7th & 8th March</td>
+            <td>Coming Soon</td>
             <td>Round 1: 12:30 P.M <br>
               Round 2(Next Day): 10:00 A.M</td>
             <td>D1 Lab 104 & 107</td>
           </tr>
-         
+          <tr>
+            <td>Techno Theatre Thrive</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
+            <td>D2 Room no: 105</td>
+          </tr>
           <tr>
             <td>Game Storm</td>
-            <td>7th & 8th March</td>
+            <td>Coming Soon</td>
             <td>Coming Soon</td>
             <td>D1 Lab 209-1 & Room no: 206-1&2</td>
           </tr>
           <tr>
             <td>Shark Tank</td>
-            <td>7th & 8th March</td>
             <td>Coming Soon</td>
-            <td>D1 - 108</td>
+            <td>Coming Soon</td>
+            <td>D1 Seminar Hall</td>
           </tr>
           <tr>
             <td>Legacy Quest</td>
-            <td>7th & 8th March</td>
+            <td>Coming Soon</td>
             <td>Round 1: 11:30 A.M <br>
               Round 2: 02:30 P.M <br>
               Round 3(Next Day): 11:00 A.M</td>
@@ -664,7 +649,7 @@
           </tr>
           <tr>
             <td>C-Volution</td>
-            <td>7th & 8th March</td>
+            <td>Coming Soon</td>
             <td>Round 1: 10:30 A.M <br>
               Round 2: 01:30 P.M <br>
               Round 3: 02:00 P.M</td>
@@ -672,64 +657,57 @@
           </tr>
           <tr>
             <td>Rays of Hope</td>
-            <td>7th & 8th March</td>
-            <td>Round 1 & 2: 10:30 AM - 5:00 PM <br>
-              Round 3: 9:30 AM - 5:00 PM</td>
-            <td>D2 Building - 208</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
+            <td>D2</td>
           </tr>
           <tr>
             <td>Robo Maze</td>
-            <td>7th & 8th March</td>
-            <td>Round 1: 10:30 AM - 5:00 PM <br>
-              Round 2: 9:30 Am - 12:00 PM</td>
-            <td>D2 Building Parking</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
+            <td>D2</td>
           </tr>
           <tr>
             <td>Electro Vision</td>
-            <td>7th March</td>
-            <td>11:00 AM - 12:30 PM</td>
-            <td>D2 - 106</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
+            <td>D2</td>
           </tr>
           <tr>
             <td>Bob the Builder</td>
-            <td>7th & 8th March</td>
+            <td>Coming Soon</td>
             <td>Coming Soon</td>
             <td>D6</td>
           </tr>
           <tr>
             <td>Spark of Poster</td>
-            <td>7th & 8th March</td>
+            <td>Coming Soon</td>
             <td>Coming Soon</td>
             <td>D6</td>
           </tr>
           <tr>
             <td>Hydro Maze</td>
-            <td>7th & 8th March</td>
+            <td>Coming Soon</td>
             <td>Coming Soon</td>
             <td>D6</td>
           </tr>
           <tr>
             <td>Clash of CAD</td>
-            <td>7th March</td>
-            <td>Round 1: 11:30 AM - 1:00 PM <br>
-              Round 2: 2:00 PM - 4:00 PM</td>
-            <td>D-4 Computer Lab</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
+            <td>D7</td>
           </tr>
           <tr>
             <td>Revolutionary Thinkers</td>
-            <td>7th & 8th March</td>
-            <td>Round 1: 10:30 AM - 1:00 PM <br>
-              Round 2: 2:00 PM - 5:00 PM <br>
-              Round 3: 9:30 AM - 12:00 PM</td>
-            <td>D7 - 103</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
+            <td>D7</td>
           </tr>
           <tr>
             <td>The Junkyard Innovators</td>
-            <td>7th & 8th March</td>
-            <td>Round 1: 10:30 AM - 1:00 PM <br>
-              Round 2: 2:00 PM - 5:00 PM <br>
-              Round 3: 9:30 AM - 12:00 PM</td>
-            <td>D7 - Workshop</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
+            <td>D7</td>
           </tr>
         </tbody>
       </table>
@@ -748,90 +726,80 @@
         <tbody>
           <tr>
             <td>The Chamber of Challenges</td>
-            <td>7th & 8th March</td>
-            <td>Round 1: 10:30 AM - 5:00 PM <br>
-              Round 2: 9:30 AM - 12:00 PM</td>
-            <td>D3 - Reading Room</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
           </tr>
           <tr>
             <td>Human Foosball</td>
-            <td>7th & 8th March</td>
-            <td>Round 1: 10:30 AM - 5:00 PM <br>
-              Round 2: 9:30 AM - 12:00 PM</td>
-            <td>D3 - Faculty Parking Area</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
           </tr>
           <tr>
             <td>Dan Dhana Dan</td>
-            <td>7th & 8th March</td>
-            <td>
-              
-              Round 1: 10:30 AM - 05:00 PM
-              <br>
-              
-              Round 2: 9:30 AM - 12:00 PM</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
             <td>Coming Soon</td>
           </tr>
           <tr>
             <td>Wallstreet Wizards</td>
-            <td>8th March</td>
-            <td>9:30 Am - 12:00 PM</td>
-            <td>D3 - 108</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
           </tr>
           <tr>
             <td>Bidding Wars</td>
-            <td>7th March</td>
-            <td>10:30 AM - 5:00 PM</td>
-            <td>D3 - 108</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
+            <td>D3</td>
           </tr>
 
           <tr>
             <td>Bhaukaal</td>
-            <td>7th & 8th March</td>
+            <td>Coming Soon</td>
             <td>Coming Soon</td>
             <td>D6</td>
           </tr>
           <tr>
             <td>Revolt Cup</td>
-            <td>7th & 8th March</td>
+            <td>Coming Soon</td>
             <td>Coming Soon</td>
             <td>D6</td>
           </tr>
           <tr>
             <td>Reel Revolution</td>
-            <td>7th & 8th March</td>
-            <td>Round 1: 10:30 AM - 4:00 PM <br>
-              Round 1: 12:00 PM</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
             <td>D7</td>
           </tr>
           <tr>
             <td>Boost Session</td>
-            <td>7th & 8th March</td>
-            <td>Round 1: 10:30 AM - 1:00 PM <br>
-              Round 2: 2:00 PM - 5:00 PM<br>
-              Round 3: 9:30 AM - 12:00 PM</td>
-            <td>D7 - Parking Area</td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
+            <td>D7</td>
           </tr>
           <tr>
             <td>Fortune Wheel</td>
-            <td>7th & 8th March</td>
-            <td></td>
+            <td>Coming Soon</td>
+            <td>Coming Soon</td>
             <td>D8</td>
           </tr>
           <tr>
             <td>Market Minds</td>
-            <td>7th & 8th March</td>
+            <td>Coming Soon</td>
             <td>Coming Soon</td>
             <td>D8</td>
           </tr>
           <tr>
             <td>Treasure Hunt</td>
-            <td>7th & 8th March</td>
+            <td>Coming Soon</td>
             <td>Coming Soon</td>
             <td>D8</td>
           </tr>
           <tr>
             <td>Courtroom</td>
-            <td>7th & 8th March</td>
+            <td>Coming Soon</td>
             <td>Coming Soon</td>
             <td>D8</td>
           </tr>
