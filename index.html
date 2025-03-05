@@ -213,6 +213,15 @@
             Visit <i class="fas fa-arrow-right"></i>
           </button>
         </div>
+        <div class="event-card" data-department="computer" data-event-type="non-tech">
+          <h3>Computer &amp; IT - Non-Tech Events</h3>
+          <p>
+            Explore Non-tech events by Computer &amp; IT Department.
+          </p>
+          <button class="visit-button" onclick="showEvents('computer', 'non-tech'); event.stopPropagation();">
+            Visit <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
         <div class="event-card" data-department="electrical" data-event-type="tech">
           <h3>Electrical / EC - Tech Events</h3>
           <p>Explore tech events by Electrical / EC Department.</p>
@@ -302,54 +311,7 @@
           <p>A 30-question C programming quiz where top performers advance, with a speed bonus for early submissions.</p>
           <a href="C-VOLUTION.html" class="register-button">Explore</a>
         </div>
-      
-        <!-- Hidden on mobile -->
-        <div class="event-card hidden-on-mobile" style="visibility: hidden;">
-          <h3>THE GRAVITY</h3>
-          <p>A 3-player challenge to build a glass pyramid while keeping a balloon in the air within 30 seconds.</p>
-          <a href="THEGRAVITY.html" class="register-button">Explore</a>
-        </div>
-
-        <div class="event-card hidden-on-mobile"style="visibility: hidden;">
-          <h3>THE GRAVITY</h3>
-          <p>A 3-player challenge to build a glass pyramid while keeping a balloon in the air within 30 seconds.</p>
-          <a href="THEGRAVITY.html" class="register-button">Explore</a>
-        </div>
-      
-        <!-- Section for "On the spot fun events" -->
-        <div style="border: 2px solid #ff7849; padding: 10px; width: fit-content; margin: 70px auto;">
-          <h2 style="margin-top: 30px; text-align: center; font-size: 2rem; color: #ff7849; font-weight: bold;">On the spot fun events</h2>
-        </div>
-
-        <div class="event-card hidden-on-mobile"style="visibility: hidden;">
-          <h3>THE GRAVITY</h3>
-          <p>A 3-player challenge to build a glass pyramid while keeping a balloon in the air within 30 seconds.</p>
-          <a href="THEGRAVITY.html" class="register-button">Explore</a>
-        </div>
-      
-        <div class="event-card">
-          <h3>SQUID GAME</h3>
-          <p>A 2-minute team game where 3 players with tied legs complete tasks like Spinning Top, Lock n Key, and Seven Stones.</p>
-          <a href="SQUIDGAME.html" class="register-button">Explore</a>
-        </div>
-      
-        <div class="event-card">
-          <h3>CORNHOLE</h3>
-          <p>A 1v1 game where players aim to score 10 points by tossing pouches onto a board or into a hole.</p>
-          <a href="CORNHOLE.html" class="register-button">Explore</a>
-        </div>
-      
-        <div class="event-card">
-          <h3>THE GRAVITY</h3>
-          <p>A 3-player challenge to build a glass pyramid while keeping a balloon in the air within 30 seconds.</p>
-          <a href="THEGRAVITY.html" class="register-button">Explore</a>
-        </div>
-      
-        <div class="event-card">
-          <h3>SHADOW MOVE</h3>
-          <p>A 4-player race where the first finisher wins; one restart is allowed in case of a foul.</p>
-          <a href="SHADOWMOVE.html" class="register-button">Explore</a>
-        </div>
+    
       </div>
       
       <style>
@@ -455,6 +417,40 @@
       </div>
 
       <!-- Non-Tech Events -->
+
+      <div id="computer-non-tech-events" class="events-grid" style="display: none">
+        <button class="back-button" id="backid" onclick="showTechNonTech('computer')">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <div class="event-card">
+          <h3>SQUID GAME</h3>
+          <p>A 2-minute team game where 3 players with tied legs complete tasks like Spinning Top, Lock n Key, and Seven Stones.</p>
+          <a href="SQUIDGAME.html" class="register-button">Explore</a>
+        </div>
+      
+        <div class="event-card">
+          <h3>CORNHOLE</h3>
+          <p>A 1v1 game where players aim to score 10 points by tossing pouches onto a board or into a hole.</p>
+          <a href="CORNHOLE.html" class="register-button">Explore</a>
+        </div>
+        <div class="event-card">
+          <h3>THE GRAVITY</h3>
+          <p>A 3-player challenge to build a glass pyramid while keeping a balloon in the air within 30 seconds.</p>
+          <a href="THEGRAVITY.html" class="register-button">Explore</a>
+        </div>
+      
+        <div class="event-card">
+          <h3>SHADOW MOVE</h3>
+          <p>A 4-player race where the first finisher wins; one restart is allowed in case of a foul.</p>
+          <a href="SHADOWMOVE.html" class="register-button">Explore</a>
+        </div>
+      </div>
+
+
+
+
+
+
       <div id="humanity-non-tech-events" class="events-grid" style="display: none">
         <button class="back-button" id="backid" onclick="showTechNonTech('humanity')">
           <i class="fas fa-arrow-left"></i> Back
